@@ -37,11 +37,13 @@ cleanup_strip_charts() {
   rm -rf stable
   rm -rf incubator
   rm -rf operators
+  rm -rf dev
   mkdir stable
   mkdir incubator
   mkdir dependency
   mkdir enterprise
   mkdir operators
+  mkdir dev
 
   cd $TEMP_FOLDER
 }
@@ -81,8 +83,9 @@ copy_catalog_file() {
   local STABLE_MAPPING=$(parse_mapping stable $STRIP_STABLE )
   local INCUBATOR_MAPPING=$(parse_mapping incubator $STRIP_INCUBATOR )
   local ENTERPRISE_MAPPING=$(parse_mapping enterprise $STRIP_ENTERPRISE )
+  local DEV_MAPPING=$(parse_mapping dev $STRIP_DEV )
 
-  jq "{charts, test, operators, dependency, stable: { $STABLE_MAPPING },  incubator: { $INCUBATOR_MAPPING }, enterprise: { $ENTERPRISE_MAPPING }}" catalog.json > catalog.json.tmp
+  jq "{charts, test, operators, dependency, stable: { $STABLE_MAPPING },  incubator: { $INCUBATOR_MAPPING }, enterprise: { $ENTERPRISE_MAPPING }, dev: { $DEV }}" catalog.json > catalog.json.tmp
   mv catalog.json.tmp catalog.json
 }
 
@@ -101,6 +104,7 @@ copy_charts stable $STRIP_STABLE
 copy_charts incubator $STRIP_INCUBATOR
 copy_charts dependency all
 copy_charts enterprise $STRIP_ENTERPRISE
+copy_charts dev $STRIP_DEV
 copy_charts operators all
 copy_catalog_file
 commit_changes

@@ -6,7 +6,9 @@ Strip down the awesome but slow to update TrueCharts catalog to what really matt
 
 This is a simple dockerized cron script that grabs just the specifed apps from the TrueCharts catalog and pushes them into your own github catalog. You have to provide these environment variables:
 
-* `STRIP_STABLE` to specify the *stable* apps to grab, e.g. `nextcloud|plex|traefik|cloudflareddns|vaultwarden` (it's important to separate via pipe `|` because that is directly used inside a grep regex)
+* `STRIP_STABLE` to specify the *stable* apps to grab, e.g. `ddns-updater` (it's important to separate via pipe `|` because that is directly used inside a grep regex)
+* `STRIP_DEV` to specify the *stable* apps to grab, e.g. `sonarqube` (it's important to separate via pipe `|` because that is directly used inside a grep regex)
+* `STRIP_ENTERPRISE` to specify the *stable* apps to grab, e.g. `nextcloud|plex|traefik|cloudflareddns|vaultwarden` (it's important to separate via pipe `|` because that is directly used inside a grep regex)
 * `STRIP_INCUBATOR` to specify the *incubator* apps to grab, e.g. `actualserver|breitbandmessung-de`
 * `STRIP_REPO` to specify your git repo URL where to push the stripped down catalog. I recommend github because you can host a repo for free and you can include the auth token to authorize the push, e.g. `https://ghp_17613457614573562476235476@github.com/tuky/my-stripped-charts.git`
 
